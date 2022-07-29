@@ -13,6 +13,19 @@ let pageLocators = {
         'First': '[data-slide-to="0"]',
         'Second': '[data-slide-to="1"]',
         'Third': '[data-slide-to="2"]'
+    },
+    links: {
+        'Contact': 'a:contains("Contact")',
+        'About Us': 'a:contains("About us")',
+        'Log in': 'a:contains("Log in")',
+        'Cart': 'a:contains("Cart")',
+        'Sign up': 'a:contains("Sign up")'
+    },
+    modals: {
+        'Contact': '#exampleModal',
+        'About Us': '#videoModal',
+        'Log in': '#logInModal',
+        'Sign up': '#signInModal'
     }
 }
 
@@ -39,9 +52,13 @@ class homePage {
         cy.get(pageLocators.carouselActiveItem).children(pageLocators.imageShownInCarousel).invoke('attr', 'alt').should('eq', slide);
     }
 
-    //waitUntilSliderFinished(initialActiveItem) {
-    //    cy.wrap(cy.get(pageLocators.carouselActiveItem).children(pageLocators.imageShownInCarousel).invoke('attr', 'alt').should('not.eq', initialActiveItem),{timeout:10000});  
-    //}
+    clickLink(link) {
+        cy.get(pageLocators.links[link]).click()
+    }
+
+    validateModalIsDisplay(modal) {
+        cy.get(pageLocators.modals[modal]).should('have.attr', 'style', 'display: block;')
+    }
 }
 
 export default homePage;

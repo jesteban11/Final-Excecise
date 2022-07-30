@@ -19,7 +19,14 @@ let pageLocators = {
         'About Us': 'a:contains("About us")',
         'Log in': 'a:contains("Log in")',
         'Cart': 'a:contains("Cart")',
-        'Sign up': 'a:contains("Sign up")'
+        'Sign up': 'a:contains("Sign up")',
+        'Phones': 'a:contains("Phones")',
+        'Laptops': 'a:contains("Laptops")',
+        'Monitors': 'a:contains("Monitors")',
+        'Samsung galaxy s6': 'a:contains("Samsung galaxy s6")',
+        'Nokia lumia 1520': 'a:contains("Nokia lumia 1520")',
+        'Nexus 6': 'a:contains("Nexus 6")',
+        'Sony vaio i5': 'a:contains("Sony vaio i5")'
     },
     modals: {
         'Contact': '#exampleModal',

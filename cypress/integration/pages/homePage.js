@@ -26,7 +26,8 @@ let pageLocators = {
         'Samsung galaxy s6': 'a:contains("Samsung galaxy s6")',
         'Nokia lumia 1520': 'a:contains("Nokia lumia 1520")',
         'Nexus 6': 'a:contains("Nexus 6")',
-        'Sony vaio i5': 'a:contains("Sony vaio i5")'
+        'Sony vaio i5': 'a:contains("Sony vaio i5")',
+        'Apple monitor 24': 'a:contains("Apple monitor 24")'
     },
     modals: {
         'Contact': '#exampleModal',

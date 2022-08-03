@@ -15,6 +15,17 @@ class productPage {
             expect(text).to.be.eql('Product added');
         });
     }
+
+    productIsAdded() {
+        cy.intercept('POST', '/addtocart')
+            .as('addToCartResponse')
+            .then(() => {
+                cy.wait('@addToCartResponse')
+                cy.on("window:alert", (text) => {
+                    expect(text).to.be.eql('Product added');
+                });
+            });
+    }
 }
 
 export default productPage;

@@ -5,7 +5,23 @@ let pageLocators = {
     },
     table: '#tbodyid',
     buttons: {
-        delete: (itemId) => { return '[onclick="deleteItem(\'' + itemId + '\')"]' }
+        delete: (itemId) => { return '[onclick="deleteItem(\'' + itemId + '\')"]' },
+        'Place Order': 'button:contains("Place Order")',
+        'Purchase': 'button:contains("Purchase")'
+    },
+    modals: {
+        'Place Order': '.modal-content'
+    },
+    textBoxes: {
+        'Name': '#name',
+        'Country': '#country',
+        'City': '#city',
+        'Card': '#card',
+        'Month': '#month',
+        'Year': '#year'
+    },
+    messages:{
+        'Purchase': 'h2:contains("Thank you for your purchase!")'
     }
 }
 
@@ -22,7 +38,6 @@ class cartPage {
         cy.get('@addToCartResponse')
             .its('request.body').
             then((requestBody) => {
-                //cy.get('[onclick="deleteItem(\'' + requestBody.id + '\')"]').click();
                 cy.get(pageLocators.buttons.delete(requestBody.id)).click();
             })
     }
@@ -35,7 +50,6 @@ class cartPage {
         this.waitUntilCartIsLoaded()
         cy.get(pageLocators.table).contains(item).should('not.exist');
     }
-
 
     validateItemIsNotShownInCartById() {
         cy.intercept('POST', '/viewcart')
@@ -61,6 +75,27 @@ class cartPage {
                 cy.wait('@viewCartResponse')
             });
     }
+
+    clickPlaceOrder() {
+        cy.get(pageLocators.buttons['Place Order']).click();
+    }
+
+    enterCustomerInformationInModal() {
+        this.fillCustomerInformation();
+        cy.get(pageLocators.messages.Purchase).should('be.visible');
+    }
+
+    fillCustomerInformation(){
+        cy.get(pageLocators.modals["Place Order"]).should('be.visible');
+        cy.get(pageLocators.textBoxes.Name).type('Juanes');
+        cy.get(pageLocators.textBoxes.Country).type('Colombia');
+        cy.get(pageLocators.textBoxes.City).type('Envigado');
+        cy.get(pageLocators.textBoxes.Card).type('123121434');        
+        cy.get(pageLocators.textBoxes.Month).type('02');
+        cy.get(pageLocators.textBoxes.Year).type('2030');
+        cy.get(pageLocators.buttons.Purchase).click();
+    }
+
 }
 
 export default cartPage;

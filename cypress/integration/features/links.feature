@@ -3,7 +3,7 @@ Feature: Clicking header links
     Background: Opening the browser in demoblaze.com
         Given I visit demoblaze homepage
 
-    Scenario: Clickng Contact Link shows a Modal
+    Scenario: Clicking Contact Link shows a Modal
         When 'Contact' link is clicked
         Then 'Contact' modal is displayed
 
@@ -23,4 +23,3 @@ Feature: Clicking header links
     Scenario: Clicking Sign In Link shows a Modal
         When 'Sign up' link is clicked
         Then 'Sign up' modal is displayed
-

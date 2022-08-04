@@ -20,14 +20,17 @@ let pageLocators = {
         'Log in': 'a:contains("Log in")',
         'Cart': 'a:contains("Cart")',
         'Sign up': 'a:contains("Sign up")',
+        'Samsung galaxy s6': 'a.hrefch:contains("Samsung galaxy s6")',
+        'Nokia lumia 1520': 'a.hrefch:contains("Nokia lumia 1520")',
+        'Nexus 6': 'a.hrefch:contains("Nexus 6")',
+        'MacBook air': 'a.hrefch:contains("Nexus 6")',
+        'Sony vaio i5': 'a.hrefch:contains("Sony vaio i5")',
+        'Apple monitor 24': 'a.hrefch:contains("Apple monitor 24")'
+    },
+    categories: {
         'Phones': 'a:contains("Phones")',
         'Laptops': 'a:contains("Laptops")',
         'Monitors': 'a:contains("Monitors")',
-        'Samsung galaxy s6': 'a:contains("Samsung galaxy s6")',
-        'Nokia lumia 1520': 'a:contains("Nokia lumia 1520")',
-        'Nexus 6': 'a:contains("Nexus 6")',
-        'Sony vaio i5': 'a:contains("Sony vaio i5")',
-        'Apple monitor 24': 'a:contains("Apple monitor 24")'
     },
     modals: {
         'Contact': '#exampleModal',
@@ -61,11 +64,20 @@ class homePage {
     }
 
     clickLink(link) {
-        cy.get(pageLocators.links[link]).click()
+        cy.get(pageLocators.links[link]).click();
+    }
+
+    clickCategory(category) {
+        cy.intercept('POST', '/bycat')
+            .as('byCategory')
+            .then(() => {
+                cy.get(pageLocators.categories[category]).click();
+                cy.wait('@byCategory');
+            });
     }
 
     validateModalIsDisplay(modal) {
-        cy.get(pageLocators.modals[modal]).should('have.attr', 'style', 'display: block;')
+        cy.get(pageLocators.modals[modal]).should('have.attr', 'style', 'display: block;');
     }
 }
 

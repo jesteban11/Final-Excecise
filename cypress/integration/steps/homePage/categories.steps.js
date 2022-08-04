@@ -7,8 +7,8 @@ const homePageObject = new homePage();
 const productPageObject = new productPage();
 const cartPageObject = new cartPage();
 
-Given('{string} link is clicked', (link) => {
-    homePageObject.clickLink(link);
+Given('{string} category is clicked', (category) => {
+    homePageObject.clickCategory(category);
 });
 
 When('{string} is clicked', (button) => {
@@ -24,7 +24,16 @@ When('Product is added', () => {
 });
 
 When('{string} is deleted', (item) => {
-    cartPageObject.deleteItemFromCart(item);    
+    cartPageObject.deleteItemFromCart(item);
+});
+
+When('Order is placed', () => {
+    homePageObject.clickLink('Cart');
+    cartPageObject.clickPlaceOrder();
+});
+
+When('Customer information is entered', () => {
+    cartPageObject.enterCustomerInformationInModal();
 });
 
 When('the product is deleted from the {string}', (link) => {
@@ -37,10 +46,10 @@ Then('{string} should be shown in the {string}', (item, link) => {
     cartPageObject.validateItemInCart(item);
 });
 
-Then('{string} is not shown in the cart', (item) => {    
+Then('{string} is not shown in the cart', (item) => {
     cartPageObject.validateItemIsNotShownInCart(item);
 });
 
-Then('the product is not shown in the cart', (item) => {    
+Then('the product is not shown in the cart', (item) => {
     cartPageObject.validateItemIsNotShownInCartById(item);
 });

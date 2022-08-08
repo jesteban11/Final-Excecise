@@ -20,7 +20,7 @@ let pageLocators = {
         'Month': '#month',
         'Year': '#year'
     },
-    messages:{
+    messages: {
         'Purchase': 'h2:contains("Thank you for your purchase!")'
     }
 }
@@ -85,15 +85,17 @@ class cartPage {
         cy.get(pageLocators.messages.Purchase).should('be.visible');
     }
 
-    fillCustomerInformation(){
+    fillCustomerInformation() {
         cy.get(pageLocators.modals["Place Order"]).should('be.visible');
-        cy.get(pageLocators.textBoxes.Name).type('Juanes');
-        cy.get(pageLocators.textBoxes.Country).type('Colombia');
-        cy.get(pageLocators.textBoxes.City).type('Envigado');
-        cy.get(pageLocators.textBoxes.Card).type('123121434');        
-        cy.get(pageLocators.textBoxes.Month).type('02');
-        cy.get(pageLocators.textBoxes.Year).type('2030');
-        cy.get(pageLocators.buttons.Purchase).click();
+        cy.fixture('customer').then((customer) => {            
+            cy.get(pageLocators.textBoxes.Name).type(customer.name);
+            cy.get(pageLocators.textBoxes.Country).type(customer.country);
+            cy.get(pageLocators.textBoxes.City).type(customer.city);
+            cy.get(pageLocators.textBoxes.Card).type(customer.card);
+            cy.get(pageLocators.textBoxes.Month).type(customer.month);
+            cy.get(pageLocators.textBoxes.Year).type(customer.year);
+            cy.get(pageLocators.buttons.Purchase).click();
+        })
     }
 
 }

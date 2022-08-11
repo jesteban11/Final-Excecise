@@ -27,10 +27,12 @@ Feature: Categories selection testing
         When 'Apple monitor 24' is deleted
         Then 'Apple monitor 24' is not shown in the cart
 
-    Scenario: Buying
+    @regression
+    Scenario: Buying a product
         And 'Laptops' category is clicked
         And 'MacBook air' link is clicked
         And 'Add to cart' is clicked
         And Product is added
         And Order is placed
         When Customer information is entered
+        Then Purchase message is shown

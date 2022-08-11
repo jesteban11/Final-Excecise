@@ -33,7 +33,7 @@ When('Order is placed', () => {
 });
 
 When('Customer information is entered', () => {
-    cartPageObject.enterCustomerInformationInModal();
+    cartPageObject.fillCustomerInformation();
 });
 
 When('the product is deleted from the {string}', (link) => {
@@ -52,4 +52,8 @@ Then('{string} is not shown in the cart', (item) => {
 
 Then('the product is not shown in the cart', (item) => {
     cartPageObject.validateItemIsNotShownInCartById(item);
+});
+
+Then('Purchase message is shown', () => {
+    cartPageObject.validatePurchaseIsShown();
 });

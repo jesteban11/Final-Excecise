@@ -23,7 +23,7 @@ let pageLocators = {
         'Samsung galaxy s6': 'a.hrefch:contains("Samsung galaxy s6")',
         'Nokia lumia 1520': 'a.hrefch:contains("Nokia lumia 1520")',
         'Nexus 6': 'a.hrefch:contains("Nexus 6")',
-        'MacBook air': 'a.hrefch:contains("Nexus 6")',
+        'MacBook air': 'a.hrefch:contains("MacBook air")',
         'Sony vaio i5': 'a.hrefch:contains("Sony vaio i5")',
         'Apple monitor 24': 'a.hrefch:contains("Apple monitor 24")'
     },

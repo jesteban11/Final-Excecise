@@ -1,4 +1,4 @@
-Feature: Clicking carousel elements
+Feature: Carousel elements testing
 
     Background: Opening the browser in demoblaze.com
         Given I visit demoblaze homepage

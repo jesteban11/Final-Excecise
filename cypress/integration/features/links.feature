@@ -1,4 +1,4 @@
-Feature: Clicking header links
+Feature: Header links tests
 
     Background: Opening the browser in demoblaze.com
         Given I visit demoblaze homepage

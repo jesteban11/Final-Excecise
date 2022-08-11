@@ -17,4 +17,5 @@ npm test
 or
 ```
 npx cypress run --env allure=true
+./allure-2.13.8/bin/allure serve allure-results/
 ```

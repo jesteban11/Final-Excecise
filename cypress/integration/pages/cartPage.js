@@ -10,7 +10,7 @@ let pageLocators = {
         'Purchase': 'button:contains("Purchase")'
     },
     modals: {
-        'Place Order': '.modal-content'
+        'Place Order': '#orderModal'
     },
     textBoxes: {
         'Name': '#name',
@@ -47,7 +47,7 @@ class cartPage {
     }
 
     validateItemIsNotShownInCart(item) {
-        this.waitUntilCartIsLoaded()
+        this.waitUntilCartIsLoaded();
         cy.get(pageLocators.table).contains(item).should('not.exist');
     }
 
@@ -77,17 +77,14 @@ class cartPage {
     }
 
     clickPlaceOrder() {
-        cy.get(pageLocators.buttons['Place Order']).click();
-    }
-
-    enterCustomerInformationInModal() {
-        this.fillCustomerInformation();
-        cy.get(pageLocators.messages.Purchase).should('be.visible');
+        cy.get(pageLocators.buttons['Place Order']).click();                
     }
 
     fillCustomerInformation() {
-        cy.get(pageLocators.modals["Place Order"]).should('be.visible');
-        cy.fixture('customer').then((customer) => {            
+        this.waitUntilCartIsLoaded();
+        cy.get(pageLocators.modals["Place Order"]).should('be.visible');        
+        cy.fixture('customer').then((customer) => {
+            cy.get(pageLocators.textBoxes.Name).scrollTo('top',{ ensureScrollable: false });
             cy.get(pageLocators.textBoxes.Name).type(customer.name);
             cy.get(pageLocators.textBoxes.Country).type(customer.country);
             cy.get(pageLocators.textBoxes.City).type(customer.city);
@@ -95,9 +92,13 @@ class cartPage {
             cy.get(pageLocators.textBoxes.Month).type(customer.month);
             cy.get(pageLocators.textBoxes.Year).type(customer.year);
             cy.get(pageLocators.buttons.Purchase).click();
+
         })
     }
 
+    validatePurchaseIsShown() {
+        cy.get(pageLocators.messages.Purchase).should('be.visible');
+    }
 }
 
 export default cartPage;

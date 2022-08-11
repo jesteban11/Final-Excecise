@@ -25,8 +25,7 @@ class productPage {
                     expect(text).to.be.eql('Product added');
                 });
             });
-    }
-    
+    }    
 }
 
 export default productPage;
